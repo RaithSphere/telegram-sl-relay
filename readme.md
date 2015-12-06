@@ -1,4 +1,6 @@
-== TELEGRAM TO SL BOT ==
+# Telegram SL bot
+
+## Instructions
 
 ### Create your first bot
 
