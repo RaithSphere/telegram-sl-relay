@@ -16,6 +16,10 @@ if($who == "")
 {
 	$text_reply = "$message";
 }
+if($who == "Avatars")
+{
+	$text_reply = "Avatar Scan\n==========\n".$message."--------\nAre in range of the relay (20m)";
+}
 else if(!$me)
 {
 	$text_reply = "$who: $message";
@@ -25,9 +29,11 @@ else
 	$text_reply = "$who"."$message";
 }
 
+$text_reply = urlencode($text_reply);
+
 if(isset($message))
-{	
-	$token "";
+{
+	$token = "";
 	$url = 'https://api.telegram.org/.$token./sendMessage?chat_id='.$user_id;
 	$url .= '&text=' .$text_reply;
 	$res = file_get_contents($url);
