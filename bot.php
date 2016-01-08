@@ -7,7 +7,7 @@ $text = $result['message']['text'];
 $user = $result['message']['from']['first_name'];
 $userlast = $result['message']['from']['last_name'];
 
-$url2 = "SIMURL";
+$url2 = file_get_contents("url.txt");
 
 switch (true)
 {
@@ -21,7 +21,7 @@ switch (true)
 
 	case $text == '/who';
 
-	$message = "scan";
+	$message = "avatars||scan";
        
                exec('wget -q --output-document=/dev/null --post-data="'
                                 ."{$message}\" --timeout=15 \"$url2\"");
@@ -32,17 +32,22 @@ switch (true)
 if(isset($text_reply))
 {
 	$token = '';
+	$tg_id = ""; // this is the telegram group chat ID you can get this from the logs
 	$url = 'https://api.telegram.org/.$token./sendMessage?chat_id='.$user_id;
 	$url .= '&text=' .$text_reply;
 	$res = file_get_contents($url); 
 	$message = "$username: $text";
 }
-	if(isset($text) && $user_id == "-59626787" && $text != "/who")
+	if(isset($text) && $user_id == $tg_id && $text != "/who")
 	{
 
 		if(isset($userlast)){$user = "$user $userlast";}
-			$message = "$user: $text";
-	
+			$message = "$user||$text";
+
+//$arr = array('user' => $user, 'text' => $text);
+//$message = urlencode(json_encode($arr));
+
+
 		 	exec('wget -q --output-document=/dev/null --post-data="' 
 				."{$message}\" --timeout=15 \"$url2\"");
 	}
