@@ -34,7 +34,7 @@ $text_reply = urlencode($text_reply);
 if(isset($message))
 {
 	$token = ""; // THE botfather gives you this token
-	$url = 'https://api.telegram.org/.$token./sendMessage?chat_id='.$user_id;
+	$url = 'https://api.telegram.org/'.$token.'/sendMessage?chat_id='.$user_id;
 	$url .= '&text=' .$text_reply;
 	$res = file_get_contents($url);
 }
