@@ -68,6 +68,8 @@ To register this with telegram you need to access this URL
 
 https://api.telegram.org/bot<TOKENHERE>/setWebhook?url=https://xxxxx
 
-IT MUST BE HTTPS telegram will not accept HTTP
+IT MUST BE HTTPS telegram will not accept HTTP and you must keep the bot part on the URL so its for example bot1337:BOTHASTHISTOKENBLAHBLAH
+where 1337:BOTHASTHISTOKENBLAHBLAH is the HTTP API given by bot father
+
 
 you need to remove the <> before sending this URL
