@@ -31,8 +31,8 @@ switch (true)
 
 if(isset($text_reply))
 {
-	$token = '';
-	$tg_id = ""; // this is the telegram group chat ID you can get this from the logs
+	$token = ''; // The Botfather gives you give
+	$tg_id = ""; // this is the telegram group chat ID you can get this from the log.log
 	$url = 'https://api.telegram.org/.$token./sendMessage?chat_id='.$user_id;
 	$url .= '&text=' .$text_reply;
 	$res = file_get_contents($url); 
