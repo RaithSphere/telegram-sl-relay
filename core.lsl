@@ -1,5 +1,12 @@
-string URL   = "TG URL"; // name2key url
-string URL2   = "UPDATE URL"; 
+////////////////////////////////////////////
+//
+// To Send messages to the SL .php
+// llHTTPRequest( URL + "?message=" +  llEscapeURL(messagehere) +"&name=" +llEscapeURL(namehere), [], "" );
+//
+
+
+string URL   = "TG URL"; // This is SL.php
+string URL2   = "UPDATE URL";  // This is update.php
 key    reqid;                               
 string avatars;
 
@@ -10,11 +17,11 @@ default
 {
     state_entry()
     {
-       ListenHandle =  llListen(0, "","","");
-         llRequestURL();
-          llListen(-9834765, "", llGetOwner(), "");
-         llSetText("Telegram Relay Listening", <0,1,0>, 1.0);
-          llSetColor(<0,1,0>, 4); 
+          llRequestURL(); // Get URL for CAP
+          ListenHandle = llListen(0, "","",""); // Listen to all avatars 
+          mode = TRUE; // Set the mode to true for the touch event 
+          llOwnerSay("Relay listening"); // Lets say its listening
+          llSetColor(<0,1,0>, 4);  // Change the LED to Green
     }
 
     touch_start(integer touched)
@@ -40,16 +47,15 @@ default
             }
     }
 
-  listen(integer channel, string name, key id, string message)
+
+    // Start Listening
+    listen(integer channel, string name, key id, string message)
     {
-        if(channel != -9834765)
-        {
              llSetColor(<1,1,0>, 5);
-          reqid = llHTTPRequest( URL + "?message=" +  llEscapeURL(message) +"&name=" +
+              reqid = llHTTPRequest( URL + "?message=" +  llEscapeURL(message) +"&name=" +
                                llEscapeURL(name), [], "" );
                                llSleep(.1);
            llSetColor(<0,1,0>, 5);
-        }
     }
      sensor( integer vIntFound )
     {
